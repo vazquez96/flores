@@ -1,0 +1,1937 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600&display=swap');
+
+/* =========================================================
+   FLORES AMARILLAS — CSS LIMPIO
+   V9
+   - Animación de presentación por etapas
+   - 7 tulipanes aparecen uno por uno
+   - Tallos y hojas entran antes que las flores
+   - Envoltura, cinta y moño aparecen al final
+   - Botón aparece suavemente al terminar
+   - Sin alterar la alineación del ramo
+========================================================= */
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    background: #075b57;
+    color: white;
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* =========================================================
+   ESCENA
+========================================================= */
+
+.scene {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(75, 196, 174, .28),
+            transparent 36%),
+        linear-gradient(180deg,
+            #075653 0%,
+            #08736b 55%,
+            #034541 100%);
+}
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    opacity: .5;
+
+    background-image:
+        radial-gradient(circle,
+            #f4e99b 1.2px,
+            transparent 2px),
+        radial-gradient(circle,
+            #b7df9a 1px,
+            transparent 1.8px);
+
+    background-size:
+        115px 105px,
+        155px 145px;
+
+    background-position:
+        20px 18px,
+        60px 70px;
+
+    animation:
+        starsAnimation 5s ease-in-out infinite alternate;
+}
+
+@keyframes starsAnimation {
+    from {
+        opacity: .25;
+    }
+
+    to {
+        opacity: .7;
+    }
+}
+
+/* =========================================================
+   TITULO
+========================================================= */
+
+.title {
+    position: relative;
+    z-index: 30;
+    text-align: center;
+    padding: 25px 15px 0;
+}
+
+.title h1 {
+    margin: 0;
+    color: #ffe52f;
+
+    font-family: "Pacifico", cursive;
+    font-size: clamp(1.9rem, 4.4vw, 3.8rem);
+    line-height: 1.15;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, .18);
+
+    opacity: 0;
+    animation: titleReveal 1s .25s ease forwards;
+}
+
+.title p {
+    margin: 8px 0 0;
+    color: #f7e4a0;
+    font-size: clamp(.9rem, 2vw, 1.2rem);
+
+    opacity: 0;
+    animation: subtitleReveal 1s .55s ease forwards;
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-18px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   CONTENEDOR DEL RAMO
+========================================================= */
+
+.bouquet-container {
+    position: relative;
+    z-index: 10;
+
+    width: min(720px, 96vw);
+    height: 570px;
+}
+
+.bouquet {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 540px;
+    height: 540px;
+
+    transform: translateX(-50%);
+}
+
+/* =========================================================
+   TALLOS
+========================================================= */
+
+.stem {
+    position: absolute;
+    z-index: 2;
+
+    bottom: 95px;
+    width: 8px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(90deg,
+            #145736,
+            #68aa4d,
+            #145736);
+
+    transform-origin: bottom center;
+
+    opacity: 0;
+
+    animation:
+        stemGrow 1.2s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+/*
+   Los ángulos y posiciones están calculados para que
+   la PARTE SUPERIOR del tallo llegue al centro de
+   su respectivo tulipán.
+
+   No se deben mover de forma independiente.
+*/
+
+.stem-1 {
+    --rotation: -18deg;
+
+    left: 166px;
+    height: 295px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .15s;
+}
+
+.stem-2 {
+    --rotation: -10deg;
+
+    left: 196px;
+    height: 305px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .30s;
+}
+
+.stem-3 {
+    --rotation: -3deg;
+
+    left: 226px;
+    height: 315px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .45s;
+}
+
+.stem-4 {
+    --rotation: 2deg;
+
+    left: 260px;
+    height: 320px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .60s;
+}
+
+.stem-5 {
+    --rotation: 8deg;
+
+    left: 287px;
+    height: 315px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .75s;
+}
+
+.stem-6 {
+    --rotation: 14deg;
+
+    left: 317px;
+    height: 305px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: .90s;
+}
+
+.stem-7 {
+    --rotation: 1deg;
+
+    left: 226px;
+    height: 295px;
+
+    transform: rotate(var(--rotation));
+    animation-delay: 1.45s;
+}
+
+@keyframes stemGrow {
+    from {
+        opacity: 0;
+        transform:
+            scaleY(0) rotate(0deg);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scaleY(1) rotate(var(--rotation));
+    }
+}
+
+/* =========================================================
+   HOJAS
+========================================================= */
+
+.leaf {
+    position: absolute;
+    z-index: 4;
+
+    width: 105px;
+    height: 43px;
+
+    border-radius: 100% 0 100% 0;
+
+    background:
+        linear-gradient(135deg,
+            #80bd57,
+            #17613b);
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0, 0, 0, .18));
+
+    opacity: 0;
+
+    animation:
+        leafAppear 1s ease forwards;
+}
+
+.leaf-1 {
+    left: 102px;
+    bottom: 220px;
+    transform: rotate(-45deg) scale(.9);
+    animation-delay: 1.15s;
+}
+
+.leaf-2 {
+    left: 140px;
+    bottom: 260px;
+    transform:
+        rotate(38deg) scaleX(-1) scale(.9);
+    animation-delay: 1.35s;
+}
+
+.leaf-3 {
+    left: 180px;
+    bottom: 200px;
+    transform: rotate(-28deg) scale(.85);
+    animation-delay: 1.75s;
+}
+
+.leaf-4 {
+    left: 245px;
+    bottom: 258px;
+    transform:
+        rotate(34deg) scaleX(-1) scale(.9);
+    animation-delay: 1.95s;
+}
+
+.leaf-5 {
+    left: 290px;
+    bottom: 205px;
+    transform: rotate(-28deg) scale(.88);
+    animation-delay: 1.95s;
+}
+
+.leaf-6 {
+    left: 340px;
+    bottom: 255px;
+    transform:
+        rotate(40deg) scaleX(-1) scale(.9);
+    animation-delay: 2.15s;
+}
+
+@keyframes leafAppear {
+    from {
+        opacity: 0;
+        scale: .1;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/* =========================================================
+   TULIPANES
+========================================================= */
+
+.tulip {
+    position: absolute;
+    z-index: 8;
+
+    width: 78px;
+    height: 105px;
+
+    opacity: 0;
+
+    transform-origin: bottom center;
+
+    filter:
+        drop-shadow(0 7px 7px rgba(0, 0, 0, .17));
+
+    animation:
+        bloom 1.3s cubic-bezier(.16, .9, .25, 1) forwards;
+}
+
+/*
+   Cada flor tiene su propio ángulo y escala.
+   Estos mismos valores se conservan durante
+   la animación para que la posición final no cambie.
+*/
+
+.tulip-1 {
+    --angle: -18deg;
+    --scale: .86;
+
+    left: 45px;
+    bottom: 346px;
+    z-index: 9;
+    animation-delay: 0.75s;
+}
+
+.tulip-2 {
+    --angle: -10deg;
+    --scale: .91;
+
+    left: 112px;
+    bottom: 382px;
+    z-index: 10;
+    animation-delay: 1.00s;
+}
+
+.tulip-3 {
+    --angle: -3deg;
+    --scale: .94;
+
+    left: 177px;
+    bottom: 399px;
+    z-index: 11;
+    animation-delay: 1.25s;
+}
+
+.tulip-4 {
+    --angle: 2deg;
+    --scale: 1;
+
+    left: 236px;
+    bottom: 414px;
+    z-index: 14;
+    animation-delay: 1.50s;
+}
+
+.tulip-5 {
+    --angle: 8deg;
+    --scale: .94;
+
+    left: 298px;
+    bottom: 399px;
+    z-index: 12;
+    animation-delay: 1.75s;
+}
+
+.tulip-6 {
+    --angle: 14deg;
+    --scale: .90;
+
+    left: 360px;
+    bottom: 378px;
+    z-index: 11;
+    animation-delay: 2.00s;
+}
+
+/*
+   Séptima flor:
+   va ligeramente delante del centro para
+   dar profundidad al ramo.
+*/
+.tulip-7 {
+    --angle: 1deg;
+    --scale: .78;
+
+    left: 205px;
+    bottom: 347px;
+    z-index: 13;
+    animation-delay: 2.25s;
+}
+
+/* =========================================================
+   PETALOS DEL TULIPAN
+========================================================= */
+
+.tulip span {
+    position: absolute;
+    bottom: 0;
+
+    width: 34px;
+    height: 84px;
+
+    border-radius: 55% 55% 45% 45%;
+
+    background:
+        linear-gradient(105deg,
+            #e5a900 0%,
+            #ffcf32 30%,
+            #fff078 58%,
+            #efb000 100%);
+
+    transform-origin: bottom center;
+}
+
+.tulip span:nth-child(1) {
+    left: 0;
+    width: 34px;
+    height: 84px;
+    transform: rotate(-27deg);
+}
+
+.tulip span:nth-child(2) {
+    left: 9px;
+    width: 37px;
+    height: 98px;
+    transform: rotate(-12deg);
+}
+
+.tulip span:nth-child(3) {
+    left: 20px;
+    width: 38px;
+    height: 105px;
+    z-index: 5;
+
+    background:
+        linear-gradient(90deg,
+            #efad00,
+            #ffe76b,
+            #e6a500);
+}
+
+.tulip span:nth-child(4) {
+    left: 32px;
+    width: 37px;
+    height: 98px;
+    transform: rotate(12deg);
+}
+
+.tulip span:nth-child(5) {
+    left: 44px;
+    width: 34px;
+    height: 84px;
+    transform: rotate(27deg);
+}
+
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(90px) scale(.12) rotate(0deg);
+    }
+
+    45% {
+        opacity: 1;
+        transform:
+            translateY(-8px) scale(calc(var(--scale) * 1.05)) rotate(var(--angle));
+    }
+
+    70% {
+        transform:
+            translateY(3px) scale(calc(var(--scale) * .97)) rotate(var(--angle));
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0) scale(var(--scale)) rotate(var(--angle));
+    }
+}
+
+/* =========================================================
+   BRISA SUAVE DESPUÉS DE LA PRESENTACIÓN
+========================================================= */
+
+/*
+   Una sola animación controla cada tulipán.
+   Primero aparece y después, ya formado,
+   recibe un movimiento casi imperceptible de brisa.
+*/
+
+.tulip {
+    animation-name: bloomSway;
+    animation-duration: 4.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes bloomSway {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(90px) scale(.12) rotate(0deg);
+    }
+
+    13% {
+        opacity: 1;
+        transform:
+            translateY(-8px) scale(calc(var(--scale) * 1.05)) rotate(var(--angle));
+    }
+
+    19% {
+        transform:
+            translateY(3px) scale(calc(var(--scale) * .97)) rotate(var(--angle));
+    }
+
+    24% {
+        opacity: 1;
+        transform:
+            translateY(0) scale(var(--scale)) rotate(var(--angle));
+    }
+
+    70%,
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0) scale(var(--scale)) rotate(var(--angle));
+    }
+
+    82% {
+        transform:
+            translateY(-2px) scale(var(--scale)) rotate(calc(var(--angle) + 1deg));
+    }
+
+    91% {
+        transform:
+            translateY(-1px) scale(var(--scale)) rotate(calc(var(--angle) - .7deg));
+    }
+}
+
+/* =========================================================
+   ENVOLTURA
+========================================================= */
+
+.paper {
+    position: absolute;
+    z-index: 12;
+
+    left: 50%;
+    bottom: 18px;
+
+    width: 310px;
+    height: 220px;
+
+    transform: translateX(-50%);
+
+    clip-path:
+        polygon(2% 7%,
+            50% 24%,
+            98% 7%,
+            84% 100%,
+            16% 100%);
+
+    background:
+        linear-gradient(100deg,
+            rgba(255, 255, 255, .22),
+            transparent 18%,
+            rgba(255, 255, 255, .08) 32%,
+            transparent 48%,
+            rgba(255, 255, 255, .15) 65%,
+            transparent 82%),
+        linear-gradient(135deg,
+            #f4c0cb,
+            #dc99ac);
+
+    opacity: 0;
+
+    animation:
+        paperAppear 1.0s 3.50s ease forwards;
+}
+
+.paper::before,
+.paper::after {
+    content: "";
+
+    position: absolute;
+    top: 15px;
+
+    width: 2px;
+    height: 185px;
+
+    background:
+        rgba(255, 255, 255, .25);
+
+    transform-origin: top;
+}
+
+.paper::before {
+    left: 30%;
+    transform: rotate(9deg);
+}
+
+.paper::after {
+    right: 30%;
+    transform: rotate(-9deg);
+}
+
+@keyframes paperAppear {
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%) translateY(35px) scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+/* =========================================================
+   CINTA Y MOÑO
+========================================================= */
+
+.ribbon {
+    position: absolute;
+    z-index: 15;
+
+    left: 50%;
+    bottom: 62px;
+
+    width: 340px;
+    height: 20px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(180deg,
+            #fff06a 0%,
+            #ffd52e 48%,
+            #d9a500 100%);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, .25),
+        inset 0 2px 2px rgba(255, 255, 255, .3);
+
+    opacity: 0;
+
+    animation:
+        ribbonAppear .8s 4.15s ease forwards;
+}
+
+/* ---------------------------------------------------------
+   MOÑO V8
+   Centro pequeño + dos lazos + dos colas.
+   No modifica flores, tallos ni envoltura.
+--------------------------------------------------------- */
+
+.ribbon-knot {
+    position: absolute;
+    z-index: 22;
+
+    left: 50%;
+    bottom: 49px;
+
+    width: 34px;
+    height: 34px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 32% 28%,
+            #fff79a 0%,
+            #ffe44c 34%,
+            #efbd14 68%,
+            #c58e00 100%);
+
+    box-shadow:
+        0 4px 9px rgba(0, 0, 0, .22),
+        inset 2px 2px 4px rgba(255, 255, 255, .42);
+
+    opacity: 0;
+
+    animation:
+        knotAppear .75s 4.35s ease forwards;
+}
+
+/* ---------------------------------------------------------
+   LAZO IZQUIERDO / DERECHO
+--------------------------------------------------------- */
+
+.ribbon-knot::before,
+.ribbon-knot::after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+
+    width: 78px;
+    height: 43px;
+
+    background:
+        linear-gradient(135deg,
+            #fff27a 0%,
+            #ffda35 42%,
+            #dca500 100%);
+
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, .25),
+        inset 0 -5px 8px rgba(145, 96, 0, .18),
+        0 3px 5px rgba(0, 0, 0, .13);
+}
+
+.ribbon-knot::before {
+    left: -67px;
+
+    border-radius: 78% 22% 70% 30%;
+
+    transform: rotate(-10deg);
+    transform-origin: right center;
+}
+
+.ribbon-knot::after {
+    right: -67px;
+
+    border-radius: 22% 78% 30% 70%;
+
+    transform: rotate(10deg);
+    transform-origin: left center;
+}
+
+/* ---------------------------------------------------------
+   COLAS
+   Se mantienen separadas del centro para que
+   se lean como cinta y no como pétalos.
+--------------------------------------------------------- */
+
+.ribbon-tail {
+    display: block !important;
+
+    position: absolute;
+    z-index: 16;
+
+    bottom: 1px;
+
+    width: 31px;
+    height: 58px;
+
+    background:
+        linear-gradient(90deg,
+            #d7a100 0%,
+            #ffe85a 45%,
+            #dba600 100%);
+
+    clip-path:
+        polygon(5% 0%, 95% 0%, 84% 72%, 50% 100%, 16% 72%);
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(0 3px 4px rgba(0, 0, 0, .16));
+
+    animation:
+        tailAppear .75s 4.45s ease forwards;
+}
+
+.ribbon-left {
+    left: calc(50% - 19px);
+    transform: rotate(7deg);
+    transform-origin: top center;
+}
+
+.ribbon-right {
+    left: calc(50% - 12px);
+    transform: rotate(-7deg);
+    transform-origin: top center;
+}
+
+@keyframes ribbonAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(.3);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+
+@keyframes knotAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(.3);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.08);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@keyframes tailAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) rotate(0deg);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   MARIPOSAS
+========================================================= */
+
+.butterfly {
+    position: absolute;
+    z-index: 25;
+
+    width: 32px;
+    height: 25px;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255, 220, 50, .45));
+
+    transform: scale(1.15);
+}
+
+.butterfly .body {
+    position: absolute;
+
+    left: 14px;
+    top: 4px;
+
+    width: 4px;
+    height: 19px;
+
+    border-radius: 50%;
+    background: #59401a;
+
+    z-index: 5;
+}
+
+.butterfly .wing {
+    position: absolute;
+    top: 0;
+
+    width: 16px;
+    height: 21px;
+
+    background:
+        linear-gradient(135deg,
+            #ffe84d,
+            #f5a900);
+
+    border:
+        1px solid rgba(255, 245, 130, .8);
+}
+
+.wing-left {
+    left: 1px;
+
+    border-radius:
+        80% 20% 70% 30%;
+
+    transform-origin: right center;
+
+    animation:
+        flapLeft .25s ease-in-out infinite alternate;
+}
+
+.wing-right {
+    right: 1px;
+
+    border-radius:
+        20% 80% 30% 70%;
+
+    transform-origin: left center;
+
+    animation:
+        flapRight .25s ease-in-out infinite alternate;
+}
+
+@keyframes flapLeft {
+    from {
+        transform:
+            rotateY(0deg) rotate(-8deg);
+    }
+
+    to {
+        transform:
+            rotateY(55deg) rotate(-8deg);
+    }
+}
+
+@keyframes flapRight {
+    from {
+        transform:
+            rotateY(0deg) rotate(8deg);
+    }
+
+    to {
+        transform:
+            rotateY(-55deg) rotate(8deg);
+    }
+}
+
+/* =========================================================
+   V12 - VUELO NATURAL DE LAS MARIPOSAS
+========================================================= */
+
+
+/* =========================================================
+   MARIPOSA 1
+========================================================= */
+
+.butterfly-1 {
+
+    left: 14%;
+    top: 34%;
+
+    animation:
+        flyOne 8.5s ease-in-out infinite;
+
+}
+
+
+/* =========================================================
+   MARIPOSA 2
+========================================================= */
+
+.butterfly-2 {
+
+    right: 14%;
+    top: 46%;
+
+    animation:
+        flyTwo 10s ease-in-out infinite;
+
+}
+
+
+/* =========================================================
+   MARIPOSA 3
+========================================================= */
+
+.butterfly-3 {
+
+    left: 29%;
+    top: 66%;
+
+    animation:
+        flyThree 9s ease-in-out infinite;
+
+}
+
+
+/* =========================================================
+   TRAYECTORIA MARIPOSA 1
+========================================================= */
+
+@keyframes flyOne {
+
+    0% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(-5deg);
+
+    }
+
+    20% {
+
+        transform:
+            translate(20px, -12px) scale(1.18) rotate(5deg);
+
+    }
+
+    40% {
+
+        transform:
+            translate(48px, -30px) scale(1.13) rotate(11deg);
+
+    }
+
+    60% {
+
+        transform:
+            translate(28px, -48px) scale(1.17) rotate(-3deg);
+
+    }
+
+    78% {
+
+        transform:
+            translate(-8px, -22px) scale(1.12) rotate(-10deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(-5deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   TRAYECTORIA MARIPOSA 2
+========================================================= */
+
+@keyframes flyTwo {
+
+    0% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(3deg);
+
+    }
+
+    22% {
+
+        transform:
+            translate(-18px, 12px) scale(1.19) rotate(-6deg);
+
+    }
+
+    45% {
+
+        transform:
+            translate(-45px, -4px) scale(1.13) rotate(-12deg);
+
+    }
+
+    67% {
+
+        transform:
+            translate(-25px, -32px) scale(1.17) rotate(5deg);
+
+    }
+
+    84% {
+
+        transform:
+            translate(8px, -15px) scale(1.12) rotate(10deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(3deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   TRAYECTORIA MARIPOSA 3
+========================================================= */
+
+@keyframes flyThree {
+
+    0% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(-2deg);
+
+    }
+
+    18% {
+
+        transform:
+            translate(12px, -20px) scale(1.12) rotate(7deg);
+
+    }
+
+    38% {
+
+        transform:
+            translate(38px, -34px) scale(1.19) rotate(12deg);
+
+    }
+
+    58% {
+
+        transform:
+            translate(50px, -12px) scale(1.14) rotate(-5deg);
+
+    }
+
+    78% {
+
+        transform:
+            translate(25px, 8px) scale(1.18) rotate(-10deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(0, 0) scale(1.15) rotate(-2deg);
+
+    }
+
+}
+
+/* =========================================================
+   CARTA
+========================================================= */
+
+.message-overlay {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 35, 34, .48);
+
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: .45s ease;
+}
+
+.message-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.message-card {
+    position: relative;
+
+    width: min(440px, 100%);
+
+    padding: 40px 32px 35px;
+
+    border:
+        7px solid #efd36c;
+
+    border-radius: 22px;
+
+    background: #fff8e7;
+    color: #624d2a;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .4);
+
+    transform: scale(.75);
+
+    transition:
+        .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.message-overlay.active .message-card {
+    transform: scale(1);
+}
+
+.close-button {
+    position: absolute;
+
+    top: 7px;
+    right: 13px;
+
+    border: 0;
+    background: transparent;
+
+    color: #b47c0b;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+}
+
+.card-heart {
+    color: #c98c0b;
+    font-size: 2.6rem;
+}
+
+.message-card h2 {
+    margin: 5px 0 20px;
+
+    color: #b27808;
+
+    font:
+        2.3rem "Pacifico", cursive;
+}
+
+.message-card p {
+    font-size: 1.04rem;
+    line-height: 1.7;
+}
+
+.signature {
+    margin-top: 23px;
+
+    color: #b27808;
+
+    font:
+        1.25rem "Pacifico", cursive;
+}
+
+/* =========================================================
+   PETALOS QUE CAEN
+========================================================= */
+
+.petal {
+    position: fixed;
+    z-index: 50;
+
+    top: -25px;
+
+    width: 13px;
+    height: 21px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background: #ffd42e;
+
+    opacity: .7;
+
+    pointer-events: none;
+
+    animation:
+        petalFall linear forwards;
+}
+
+@keyframes petalFall {
+    to {
+        transform:
+            translate(var(--drift), 110vh) rotate(540deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .title {
+        padding-top: 17px;
+    }
+
+    .title h1 {
+        font-size: clamp(1.75rem, 8vw, 2.6rem);
+        line-height: 1.08;
+    }
+
+    .title p {
+        font-size: clamp(.78rem, 3.4vw, .95rem);
+    }
+
+    .bouquet-container {
+        width: 100vw;
+        height: 57vh;
+        min-height: 375px;
+    }
+
+    .bouquet {
+        transform:
+            translateX(-50%) scale(.75);
+
+        transform-origin:
+            bottom center;
+    }
+
+    .message-button {
+        margin-top: -5px;
+    }
+
+    .message-card {
+        padding:
+            34px 22px 28px;
+    }
+
+    .message-card p {
+        font-size: .96rem;
+    }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD - REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* =========================================================
+   V10 - BRISA CONTINUA EN LOS TULIPANES
+   La flor completa conserva su posición y alineación.
+   El movimiento se realiza en los pétalos para evitar
+   desalinear flores y tallos.
+========================================================= */
+
+.tulip span {
+    transform-origin: 50% 100%;
+    will-change: transform;
+}
+
+/* Pétalos exteriores: movimiento ligeramente mayor */
+.tulip span:nth-child(1) {
+    animation: petalBreezeLeft 3.8s 4.2s ease-in-out infinite;
+}
+
+.tulip span:nth-child(2) {
+    animation: petalBreezeInnerLeft 4.2s 4.35s ease-in-out infinite;
+}
+
+/* Pétalo central: casi imperceptible */
+.tulip span:nth-child(3) {
+    animation: petalBreezeCenter 4.8s 4.5s ease-in-out infinite;
+}
+
+.tulip span:nth-child(4) {
+    animation: petalBreezeInnerRight 4.2s 4.65s ease-in-out infinite;
+}
+
+.tulip span:nth-child(5) {
+    animation: petalBreezeRight 3.8s 4.8s ease-in-out infinite;
+}
+
+@keyframes petalBreezeLeft {
+
+    0%,
+    100% {
+        transform: rotate(-27deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-25deg) translateY(-2px);
+    }
+}
+
+@keyframes petalBreezeInnerLeft {
+
+    0%,
+    100% {
+        transform: rotate(-12deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-10.5deg) translateY(-1.5px);
+    }
+}
+
+@keyframes petalBreezeCenter {
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(.8deg) translateY(-1px);
+    }
+}
+
+@keyframes petalBreezeInnerRight {
+
+    0%,
+    100% {
+        transform: rotate(12deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(10.5deg) translateY(-1.5px);
+    }
+}
+
+@keyframes petalBreezeRight {
+
+    0%,
+    100% {
+        transform: rotate(27deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(25deg) translateY(-2px);
+    }
+}
+
+/* Un poco de variedad entre flores para que no se muevan idénticas. */
+.tulip-2 span,
+.tulip-5 span {
+    animation-delay: 5.0s;
+}
+
+.tulip-3 span,
+.tulip-6 span {
+    animation-delay: 5.35s;
+}
+
+.tulip-7 span {
+    animation-delay: 5.7s;
+}
+
+/* Accesibilidad: sin movimiento continuo si el sistema lo solicita. */
+@media (prefers-reduced-motion: reduce) {
+    .tulip span {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V11 - APERTURA INTERACTIVA DEL MENSAJE
+========================================================= */
+
+
+/* =========================================================
+   REACCIÓN DEL RAMO
+========================================================= */
+
+.bouquet-container.message-opening {
+
+    animation:
+        bouquetGiftReaction 900ms cubic-bezier(.22, .8, .25, 1);
+
+}
+
+
+@keyframes bouquetGiftReaction {
+
+    0% {
+
+        transform:
+            translateX(0) rotate(0deg);
+
+    }
+
+    25% {
+
+        transform:
+            translateX(-5px) rotate(-1deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateX(6px) rotate(1.2deg);
+
+    }
+
+    72% {
+
+        transform:
+            translateX(-3px) rotate(-.7deg);
+
+    }
+
+    100% {
+
+        transform:
+            translateX(0) rotate(0deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   DESTELLO DETRÁS DE LA CARTA
+========================================================= */
+
+.message-overlay.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 224, 82, .10);
+
+    filter:
+        blur(35px);
+
+    animation:
+        messageGlow 900ms ease-out forwards;
+
+}
+
+
+@keyframes messageGlow {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.45);
+
+    }
+
+    45% {
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            scale(1.5);
+
+    }
+
+}
+
+
+/* =========================================================
+   PREPARACIÓN DE LA CARTA
+========================================================= */
+
+.message-overlay.opening {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+.message-overlay.opening .message-card {
+
+    transform:
+        translateY(18px) scale(.88);
+
+}
+
+
+/* =========================================================
+   ENTRADA DE LA CARTA
+========================================================= */
+
+.message-overlay.active .message-card {
+
+    animation:
+        letterArrival 700ms 520ms cubic-bezier(.16, .9, .25, 1) both;
+
+}
+
+
+@keyframes letterArrival {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(22px) scale(.86);
+
+    }
+
+    65% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-4px) scale(1.02);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .bouquet-container.message-opening,
+    .message-button.message-hidden,
+    .message-button.message-return,
+    .message-overlay.active::before,
+    .message-overlay.active .message-card {
+
+        animation: none !important;
+
+    }
+
+}
+
+/* =========================================================
+   BOTÓN DEL MENSAJE
+   VERSIÓN LIMPIA Y DEFINITIVA
+========================================================= */
+
+.message-button {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    position: relative;
+    z-index: 100;
+
+    border: none;
+    outline: none;
+
+    padding: 13px 26px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd83d,
+            #f5b900
+        );
+
+    color: #5b4300;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, .25),
+        inset 0 1px 0 rgba(255, 255, 255, .55);
+
+    opacity: 0;
+
+    transform:
+        translateY(12px)
+        scale(.96);
+
+    animation:
+        buttonReveal
+        .9s
+        4.90s
+        cubic-bezier(.2, .8, .2, 1)
+        forwards;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        opacity .25s ease;
+}
+
+
+/* =========================================================
+   APARICIÓN INICIAL
+========================================================= */
+
+@keyframes buttonReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(.96);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.message-button:hover {
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    box-shadow:
+        0 9px 24px rgba(0, 0, 0, .30),
+        inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+.message-button:active {
+
+    transform:
+        translateY(1px)
+        scale(.98);
+}
+
+
+/* =========================================================
+   REGRESO DEL BOTÓN
+   Esta clase permanece después de cerrar la carta.
+   Así la animación inicial de 4.90s no vuelve a ejecutarse.
+========================================================= */
+
+.message-button.message-return {
+
+    animation:
+        messageButtonReturn
+        .45s
+        cubic-bezier(.2, .8, .2, 1)
+        both !important;
+}
+
+
+@keyframes messageButtonReturn {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(8px)
+            scale(.94);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   OCULTAR AL ABRIR LA CARTA
+
+   IMPORTANTE:
+   Este bloque está después de message-return para que,
+   si ambas clases existen, message-hidden tenga prioridad.
+========================================================= */
+
+.message-button.message-hidden {
+
+    animation: none !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none;
+
+    transform:
+        translateY(8px)
+        scale(.94) !important;
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .message-button {
+
+        animation: none !important;
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    .message-button.message-hidden {
+
+        opacity: 0 !important;
+
+        transform:
+            translateY(0)
+            scale(.94) !important;
+    }
+}
